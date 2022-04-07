@@ -9,3 +9,7 @@ function isNegativeZero(v) {
 
 console.log(isNegativeZero(0));
 console.log(isNegativeZero(-0));
+
+module.exports = {
+  isNegativeZero,
+};
