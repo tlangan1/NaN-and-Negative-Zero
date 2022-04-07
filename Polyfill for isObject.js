@@ -6,34 +6,16 @@ const { isNaN } = require("./NaN.js");
 // Using the polyfill pattern but overriding it with the hack "|| true" in the test.
 if (!Object.is || true) {
   Object.is = function objectDotIs(v1, v2) {
-    if (typeof v1 != typeof v2)
-      // They are of different types
-      return false;
-    else {
-      if (typeof v1 == "number") {
-        if (isNegativeZero(v1) || isNegativeZero(v2)) {
-          if (isNegativeZero(v1) && isNegativeZero(v2)) {
-            // They are both -0.
-            return true;
-          } else {
-            // One is -0 and the other is not.
-            return false;
-          }
-        } else {
-          if (isNaN(v1) || isNaN(v2)) {
-            // At least one of them is NaN.
-            if (v1 != v1 && v2 != v2) {
-              // They are both NaN
-              return true;
-            } else {
-              // One is NaN and the other is not
-              return false;
-            }
-          }
-        }
+    if (isNegativeZero(v1) || isNegativeZero(v2)) {
+      // At least one of them is negative 0
+      return isNegativeZero(v1) && isNegativeZero(v2);
+    } else {
+      if (isNaN(v1) || isNaN(v2)) {
+        // At least one of them is NaN.
+        return isNaN(v1) && isNaN(v2);
       }
-      return v1 === v2;
     }
+    return v1 === v2;
   };
 }
 
