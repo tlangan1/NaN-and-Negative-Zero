@@ -20,25 +20,13 @@ if (!Object.is || true) {
 }
 
 console.log(
-  Object.is(undefined, null) == false
-    ? "This test passed!"
-    : "This test falied."
+  !Object.is(undefined, null) ? "Tom: This test passed!" : "This test falied."
 );
 console.log(
-  Object.is("frog", "dog") == false ? "This test passed!" : "This test falied."
+  !Object.is("frog", "dog") ? "This test passed!" : "This test falied."
 );
-console.log(
-  Object.is(-0, -0) == true ? "This test passed!" : "This test falied."
-);
-console.log(
-  Object.is(NaN, NaN) == true ? "This test passed!" : "This test falied."
-);
-console.log(
-  Object.is(0, -0) == false ? "This test passed!" : "This test falied."
-);
-console.log(
-  Object.is(2, 3) == false ? "This test passed!" : "This test falied."
-);
-console.log(
-  Object.is(2, 2) == true ? "This test passed!" : "This test falied."
-);
+console.log(Object.is(-0, -0) ? "This test passed!" : "This test falied.");
+console.log(Object.is(NaN, NaN) ? "This test passed!" : "This test falied.");
+console.log(!Object.is(0, -0) ? "This test passed!" : "This test falied.");
+console.log(!Object.is(2, 3) ? "This test passed!" : "This test falied.");
+console.log(Object.is(2, 2) ? "This test passed!" : "This test falied.");
